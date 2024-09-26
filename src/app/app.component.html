@@ -46,8 +46,20 @@
         >
       </label>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!formGroup.valid || submitted"
+    >
       Submit
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="onReset()"
+      [hidden]="!submitted"
+    >
+      Reset
     </button>
   </form>
   <div *ngIf="error">

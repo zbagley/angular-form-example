@@ -19,6 +19,7 @@ type STACK_TYPE = 'STANDARD' | 'SPECIAL' | 'REJECTED';
 })
 export class AppComponent {
   title = 'angular-form-example';
+  submitted = false;
   sortedValue: STACK_TYPE | null = null;
   error: string | null = null;
   formGroup = new FormGroup({
@@ -29,6 +30,7 @@ export class AppComponent {
   });
 
   onSubmit() {
+    this.submitted = true;
     this.error = null;
     const formHeight = this.formGroup.get('height')?.value;
     const formWidth = this.formGroup.get('width')?.value;
@@ -64,5 +66,12 @@ export class AppComponent {
     } else {
       this.sortedValue = 'STANDARD';
     }
+  }
+
+  onReset() {
+    this.submitted = false;
+    this.formGroup.reset();
+    this.sortedValue = null;
+    this.error = null;
   }
 }
